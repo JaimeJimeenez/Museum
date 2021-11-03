@@ -2,7 +2,7 @@ package Integracion.Cliente;
 
 import java.util.List;
 
-import negocio.cliente.TCliente;
+import Negocio.Cliente.TCliente;
 
 public interface DAOCliente {
 

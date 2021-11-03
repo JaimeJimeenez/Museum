@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Integracion.transacciones.TransactionManager;
-import Negocio.cliente.TCliente;
-import Negocio.cliente.TCorriente;
-import Negocio.cliente.TSocio;
+import Integracion.Transacciones.TransactionManager;
+import Negocio.Cliente.TCliente;
+import Negocio.Cliente.TCorriente;
+import Negocio.Cliente.TSocio;
 
 public class DAOClienteImp implements DAOCliente {
 
