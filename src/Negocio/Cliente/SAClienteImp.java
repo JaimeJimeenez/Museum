@@ -4,8 +4,8 @@ import java.util.List;
 
 import src.Integracion.Cliente.DAOCliente;
 import src.Integracion.DAOFactoria.DAOFactoria;
-import src.Integracion.Transacciones.Transaction;
-import src.Integracion.Transacciones.TransactionManager;
+import src.Integracion.Transaccion.Transaction;
+import src.Integracion.Transaccion.TransactionManager;
 
 public class SAClienteImp implements SACliente {
 
