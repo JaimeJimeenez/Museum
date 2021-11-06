@@ -1,9 +1,9 @@
-package Presentacion.Cliente;
+package src.Presentacion.Cliente;
 
-import Negocio.SAFactoria.SAFactoria;
-import Presentacion.commandFactory.Command;
-import Presentacion.controller.Context;
-import Presentacion.controller.Eventos;
+import src.Negocio.SAFactoria.SAFactoria;
+import src.Presentacion.commandFactory.Command;
+import src.Presentacion.controller.Context;
+import src.Presentacion.controller.Eventos;
 
 
 public class BorrarClienteCommand implements Command {

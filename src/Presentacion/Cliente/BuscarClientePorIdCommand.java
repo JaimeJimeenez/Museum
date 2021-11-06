@@ -1,10 +1,10 @@
-package Presentacion.Cliente;
+package src.Presentacion.Cliente;
 
-import Negocio.SAFactoria.SAFactoria;
-import Negocio.Cliente.TCliente;
-import Presentacion.CommandFactory.Command;
-import Presentacion.Controller.Context;
-import Presentacion.Controller.Eventos;
+import src.Negocio.Cliente.TCliente;
+import src.Negocio.SAFactoria.SAFactoria;
+import src.Presentacion.CommandFactory.Command;
+import src.Presentacion.Controller.Context;
+import src.Presentacion.Controller.Eventos;
 
 
 public class BuscarClientePorIdCommand implements Command {

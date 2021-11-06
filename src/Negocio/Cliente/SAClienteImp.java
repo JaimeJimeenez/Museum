@@ -1,11 +1,11 @@
-package Negocio.Cliente;
+package src.Negocio.Cliente;
 
 import java.util.List;
 
-import Integracion.Transacciones.Transaction;
-import Integracion.Transacciones.TransactionManager;
-import Integracion.DAOFactoria.DAOFactoria;
-import Integracion.Cliente.DAOCliente;
+import src.Integracion.Cliente.DAOCliente;
+import src.Integracion.DAOFactoria.DAOFactoria;
+import src.Integracion.Transacciones.Transaction;
+import src.Integracion.Transacciones.TransactionManager;
 
 public class SAClienteImp implements SACliente {
 

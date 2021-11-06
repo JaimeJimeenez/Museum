@@ -1,8 +1,8 @@
-package Integracion.Cliente;
+package src.Integracion.Cliente;
 
 import java.util.List;
 
-import Negocio.Cliente.TCliente;
+import src.Negocio.Cliente.TCliente;
 
 public interface DAOCliente {
 

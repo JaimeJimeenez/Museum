@@ -1,4 +1,4 @@
-package Negocio.Cliente;
+package src.Negocio.Cliente;
 
 import java.util.List;
 

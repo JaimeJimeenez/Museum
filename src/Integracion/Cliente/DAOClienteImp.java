@@ -1,4 +1,4 @@
-package Integracion.Cliente;
+package src.Integracion.Cliente;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,10 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import Integracion.Transacciones.TransactionManager;
-import Negocio.Cliente.TCliente;
-import Negocio.Cliente.TCorriente;
-import Negocio.Cliente.TSocio;
+import src.Integracion.Transaccion.TransactionManager;
+import src.Negocio.Cliente.TCliente;
+import src.Negocio.Cliente.TCorriente;
+import src.Negocio.Cliente.TSocio;
 
 public class DAOClienteImp implements DAOCliente {
 
