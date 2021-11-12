@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,27 +22,33 @@ public class DAOClienteImp implements DAOCliente {
 		
 		try {
 			conexion = (Connection) TransactionManager.getInstancia().getTransaccion().getResource();
-			if (tCliente.isCorriente()) {
-				pStatement = conexion.prepareStatement("INSERT INTO CLIENTE (id, dni, direccion, gastos_envio, is_corriente) VALUES (null, ?, ?, ?");
+		
+			if (tCliente.getCuota() == 0) {
+				pStatement = conexion.prepareStatement("INSERT INTO cliente (dni, direccion, gastos_envio, activo) VALUES (?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
 				pStatement.setString(1, tCliente.getDni());
 				pStatement.setString(2, tCliente.getDireccion());
-				pStatement.setFloat(3, ((TCorriente)tCliente).getGastosEnvio());
+				pStatement.setDouble(3, ((TCorriente)tCliente).getGastosEnvio());
 				pStatement.setBoolean(4, true);
 			}
 			else {
-				pStatement = conexion.prepareStatement("INSERT INTO CLIENTE (id, dni, direccion, numero, cuota, is_corriente) VALUES (null, ?, ?, ?, ?)");
+				pStatement = conexion.prepareStatement("INSERT INTO cliente (dni, direccion, numero, cuota, activo) VALUES (?, ?, ?, ?, ?)",Statement.RETURN_GENERATED_KEYS);
 				pStatement.setString(1, tCliente.getDni());
 				pStatement.setString(2, tCliente.getDireccion());
-				pStatement.setInt(4, ((TSocio)tCliente).getNumero());
-				pStatement.setFloat(5, ((TSocio)tCliente).getCuota());
-				pStatement.setBoolean(6, false);
+				pStatement.setInt(3, tCliente.getNumero());
+				pStatement.setDouble(4, tCliente.getCuota());
+				pStatement.setBoolean(5, true);
+		
+				
 			}
 			pStatement.executeUpdate();
 			rs = pStatement.getGeneratedKeys();
+			
 			if (rs.next())
 				idCliente= rs.getInt(1);
-			pStatement.close();
+			
 			rs.close();
+			pStatement.close();
+			
 			
 		}
 		catch(SQLException e) {
@@ -51,36 +58,45 @@ public class DAOClienteImp implements DAOCliente {
 		return idCliente;
 	}
 
-	public void modificarCliente(TCliente tCliente) {
+	public int modificarCliente(TCliente tCliente) {
+		int cliente = -1;
 		try {
 			conexion= (Connection) TransactionManager.getInstancia().getTransaccion().getResource();
-			if (tCliente.isCorriente()) {
-				pStatement= conexion.prepareStatement("UPDATE cliente SET direccion= ?, gastosEnvio= ? WHERE id= ? AND activo = true");
+			
+			if (tCliente.getGastosEnvio() != 0) {
+				pStatement= conexion.prepareStatement("UPDATE cliente SET direccion= ?, gastos_envio= ?, activo = ? WHERE id= ?");
 				pStatement.setString(1, tCliente.getDireccion());
-				pStatement.setFloat(2, ((TCorriente) tCliente).getGastosEnvio());
-				pStatement.setInt(3, tCliente.getId());
-			}
-			else {
-				pStatement= conexion.prepareStatement("UPDATE cliente SET direccion= ?, numero= ?, cuota= ? WHERE id= ? AND activo = true");
-				pStatement.setString(1, tCliente.getDireccion());
-				pStatement.setInt(2, ((TSocio) tCliente).getNumero());
-				pStatement.setFloat(3, ((TSocio) tCliente).getCuota());
+				pStatement.setDouble(2, tCliente.getGastosEnvio());
+				pStatement.setBoolean(3, tCliente.isActivo());
 				pStatement.setInt(4, tCliente.getId());
 			}
+			else {
+				pStatement= conexion.prepareStatement("UPDATE cliente SET direccion = ?, numero = ?, cuota = ?, activo = ? WHERE id = ?");
+				pStatement.setString(1, tCliente.getDireccion());
+				pStatement.setInt(2, ((TSocio) tCliente).getNumero());
+				pStatement.setDouble(3, ((TSocio) tCliente).getCuota());
+				pStatement.setBoolean(4, tCliente.isActivo());
+				pStatement.setInt(5, tCliente.getId());
+			}
 			pStatement.executeUpdate();
+			cliente = tCliente.getId();
+			
 			pStatement.close();
+			
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return cliente;
 	}
 
 	public int borrarCliente(int idCliente) {
 		
 		try {
 			conexion= (Connection) TransactionManager.getInstancia().getTransaccion().getResource();
-			pStatement= conexion.prepareStatement("UPDATE cliente SET activo = false WHERE id_cliente = ?");
-			pStatement.setInt(1, idCliente);
+			pStatement= conexion.prepareStatement("UPDATE cliente SET activo = ? WHERE id = ?");
+			pStatement.setBoolean(1, false);
+			pStatement.setInt(2, idCliente);
 			pStatement.executeUpdate();
 			pStatement.close();
 		}
@@ -96,13 +112,13 @@ public class DAOClienteImp implements DAOCliente {
 		
 		try {
 			conexion = (Connection) TransactionManager.getInstancia().getTransaccion().getResource();
-			pStatement = conexion.prepareStatement("SELECT * FROM CLIENTE WHERE activo = true");
+			pStatement = conexion.prepareStatement("SELECT * FROM cliente WHERE activo = true");
 			rs = pStatement.executeQuery();
 			while (rs.next()) {
-				if (rs.getBoolean(5)) 
-					listaClientes.add(new TCorriente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4)));
+				if (rs.getString("gastos_envio") != null) 
+					listaClientes.add(new TCorriente(rs.getInt("id"), rs.getString("dni"), rs.getString("direccion"), rs.getDouble("gastos_envio")));
 				else {
-					listaClientes.add(new TSocio(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5)));
+					listaClientes.add(new TSocio(rs.getInt("id"), rs.getString("dni"), rs.getString("direccion"), rs.getInt("numero"), rs.getDouble("cuota")));
 				}
 			}
 			pStatement.close();
@@ -121,14 +137,17 @@ public class DAOClienteImp implements DAOCliente {
 		
 		try {
 			conexion = (Connection) TransactionManager.getInstancia().getTransaccion().getResource();
-			pStatement = conexion.prepareStatement("SELECT * FROM CLIENTE WHERE id = ? AND activo = true");
+			pStatement = conexion.prepareStatement("SELECT * FROM cliente WHERE id = ?");
 			pStatement.setInt(1, idCliente);
 			rs = pStatement.executeQuery();
 			if (rs.next()) {
-				if (rs.getBoolean(5)) 
-					tCliente = new TCorriente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4));
-				else 
-					tCliente = new TSocio(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5));
+				if (rs.getString("gastos_envio") != null){ 
+					tCliente = new TCorriente(rs.getInt("id"), rs.getString("dni"), rs.getString("direccion"), rs.getDouble("gastos_envio"));
+					tCliente.setActivo(rs.getBoolean("activo"));
+				}else {
+					tCliente = new TSocio(rs.getInt("id"), rs.getString("dni"), rs.getString("direccion"), rs.getInt("numero"), rs.getDouble("cuota"));
+					tCliente.setActivo(rs.getBoolean("activo"));
+				}
 			}
 			pStatement.close();
 			rs.close();
@@ -139,23 +158,23 @@ public class DAOClienteImp implements DAOCliente {
 		return tCliente;
 	}
 
-	public List<TCliente> listarClientesPorTipo(boolean tipo) {
+	
+	public List<TCliente> listarClientesPorTipo(boolean isCorriente) {
 		List<TCliente> listaClientes = new ArrayList<TCliente>();
 		
 		try {
 			conexion = (Connection) TransactionManager.getInstancia().getTransaccion().getResource();
-			
-			if (tipo) {
-				pStatement = conexion.prepareStatement("SELECT * FROM CLIENTE WHERE isCorriente = true AND activo = true");
+			if (isCorriente) {
+				pStatement = conexion.prepareStatement("SELECT * FROM cliente WHERE gastos_envio > 0 AND activo = true");
 				rs = pStatement.executeQuery();
 				while (rs.next()) 
-					listaClientes.add(new TCorriente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4)));
+					listaClientes.add(new TCorriente(rs.getInt("id"), rs.getString("dni"), rs.getString("direccion"), rs.getDouble("gastos_envio")));
 			}
 			else {
-				pStatement = conexion.prepareStatement("SELECT * FROM CLIENTE WHERE tipo = socio AND activo = true");
+				pStatement = conexion.prepareStatement("SELECT * FROM cliente WHERE gastos_envio IS NULL AND activo = true");
 				rs = pStatement.executeQuery();
 				while (rs.next()) 
-					listaClientes.add(new TSocio(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5)));
+					listaClientes.add(new TSocio(rs.getInt("id"), rs.getString("dni"), rs.getString("direccion"), rs.getInt("numero"), rs.getDouble("cuota")));
 			}
 			pStatement.close();
 			rs.close();
@@ -172,14 +191,17 @@ public class DAOClienteImp implements DAOCliente {
 		try {
 			conexion = (Connection) TransactionManager.getInstancia().getTransaccion().getResource();
 			
-			pStatement = conexion.prepareStatement("SELECT * FROM CLIENTE WHERE DNI = ? AND activo = true");
+			pStatement = conexion.prepareStatement("SELECT * FROM cliente WHERE DNI = ?");
 			pStatement.setString(1, dni);
 			rs = pStatement.executeQuery();
 			if (rs.next()) {
-				if (rs.getBoolean(5)) 
-					tCliente = new TCorriente(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getFloat(4));
-				else 
-					tCliente = new TSocio(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getFloat(5));
+				if (rs.getString("gastos_envio") != null){ 
+					tCliente = new TCorriente(rs.getInt("id"), rs.getString("dni"), rs.getString("direccion"), rs.getDouble("gastos_envio"));
+					tCliente.setActivo(rs.getBoolean("activo"));
+				}else {
+					tCliente = new TSocio(rs.getInt("id"), rs.getString("dni"), rs.getString("direccion"), rs.getInt("numero"), rs.getDouble("cuota"));
+					tCliente.setActivo(rs.getBoolean("activo"));
+				}
 			}
 			pStatement.close();
 			rs.close();
@@ -191,7 +213,5 @@ public class DAOClienteImp implements DAOCliente {
 		
 		return tCliente;
 	}
-	
-
 
 }

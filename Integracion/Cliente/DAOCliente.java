@@ -8,7 +8,7 @@ public interface DAOCliente {
 
 	public int registrarCliente(TCliente tCliente);
 
-	public void modificarCliente(TCliente tCliente);
+	public int modificarCliente(TCliente tCliente);
 
 	public int borrarCliente(int idCliente);
 
