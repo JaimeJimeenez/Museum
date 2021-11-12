@@ -1,0 +1,18 @@
+package Presentacion.VistaPrincipal;
+
+public abstract class PrincipalGUI implements GUI {
+	
+	private static PrincipalGUI instancia;
+
+	public static synchronized PrincipalGUI getInstancia() {
+		if(instancia == null){
+			instancia = new PrincipalGUIImp();
+		}
+		return instancia; 
+	}
+
+	public void setInstancia(PrincipalGUI instancia) {
+		this.instancia = instancia;
+	}
+
+}
