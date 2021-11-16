@@ -12,7 +12,7 @@ public abstract class PrincipalGUI implements GUI {
 	}
 
 	public void setInstancia(PrincipalGUI instancia) {
-		this.instancia = instancia;
+		PrincipalGUI.instancia = instancia;
 	}
 
 }
