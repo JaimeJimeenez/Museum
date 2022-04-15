@@ -12,11 +12,11 @@ import Negocio.Producto.TFotoObra;
 import Negocio.Producto.TLibro;
 import Negocio.Producto.TProducto;
 
-public class MostrarProductoMasComprado implements Query {
+public class MostrarProductoMasComprado implements Query{
 
-    @Override
-    public Object execute(Object parameter) throws Exception {
-        List<TProducto> lista = new ArrayList<TProducto>();
+	@Override
+	public Object execute(Object parametro) {
+		List<TProducto> lista = new ArrayList<TProducto>();
 		Connection conexion;
 		PreparedStatement pStatement;
 		ResultSet rs;
@@ -55,6 +55,6 @@ public class MostrarProductoMasComprado implements Query {
 		}
 		
 		return lista;
-    }
+	}
 
 }
