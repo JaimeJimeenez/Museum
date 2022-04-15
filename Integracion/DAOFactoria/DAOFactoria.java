@@ -4,7 +4,6 @@ import Integracion.Fabricante.DAOFabricante;
 import Integracion.Factura.DAOFactura;
 import Integracion.Factura.DAOLineaFactura;
 import Integracion.Producto.DAOProducto;
-import Integracion.Proveedor.DAOProveedor;
 import Integracion.Cliente.DAOCliente;
 import Integracion.Descuento.DAODescuento;
 
@@ -27,8 +26,6 @@ public abstract class DAOFactoria {
 	public abstract DAODescuento generarDAODescuento();
 	
 	public abstract DAOFactura generarDAOFactura();
-	
-	public abstract DAOProveedor generarDAOProveedor();
 	
 	public abstract DAOLineaFactura generarDAOLineaFactura();
 }

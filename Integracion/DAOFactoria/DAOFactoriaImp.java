@@ -12,8 +12,6 @@ import Integracion.Factura.DAOLineaFactura;
 import Integracion.Factura.DAOLineaFacturaImp;
 import Integracion.Producto.DAOProducto;
 import Integracion.Producto.DAOProductoImp;
-import Integracion.Proveedor.DAOProveedor;
-import Integracion.Proveedor.DAOProveedorImp;
 
 public class DAOFactoriaImp extends DAOFactoria {
 
@@ -26,8 +24,6 @@ public class DAOFactoriaImp extends DAOFactoria {
 	public DAODescuento generarDAODescuento() { return new DAODescuentoImp(); }
 
 	public DAOFactura generarDAOFactura() { return new DAOFacturaImp(); }
-
-	public DAOProveedor generarDAOProveedor() { return new DAOProveedorImp(); }
 
 	public DAOLineaFactura generarDAOLineaFactura() { return new DAOLineaFacturaImp(); }
 	
