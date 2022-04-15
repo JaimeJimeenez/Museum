@@ -10,9 +10,9 @@ import java.util.List;
 import Integracion.Transaction.TransactionManager;
 import Negocio.Factura.TFacturaTienda;
 
-public class MostrarFacturaConMayorPorcentajeDescuento implements Query {
-    
-    public Object execute(Object parametro) {
+public class MostrarFacturaConMayorPorcentajeDescuento implements Query{
+
+	public Object execute(Object parametro) {
 		List<TFacturaTienda> lista = new ArrayList<TFacturaTienda>();
 		Connection conexion;
 		PreparedStatement pStatement;
