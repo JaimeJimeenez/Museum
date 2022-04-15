@@ -1,5 +1,7 @@
 package Integracion.Fabricante;
 
+import Negocio.Fabricante.TFabricante;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,11 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Integracion.Transaction.TransactionManager;
-import Negocio.Fabricante.TFabricante;
 
 public class DAOFabricanteImp implements DAOFabricante {
-    
-    Connection conexion;
+	
+	Connection conexion;
 	PreparedStatement pStatement;
 	ResultSet rs;
 
