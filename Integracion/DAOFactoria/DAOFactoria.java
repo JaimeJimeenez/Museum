@@ -12,15 +12,11 @@ public abstract class DAOFactoria {
 	private static DAOFactoria instancia;
 
 	public static DAOFactoria getInstancia() {
-		if(instancia == null){
-			instancia = new DAOFactoriaImp();
-		}
+		if (instancia == null) instancia = new DAOFactoriaImp();
 		return instancia;
 	}
 
-	public static void setInstancia(DAOFactoria instancia) {
-		DAOFactoria.instancia = instancia;
-	}
+	public static void setInstancia(DAOFactoria instancia) { DAOFactoria.instancia = instancia; }
 
 	public abstract DAOFabricante generarDAOFabricante();
 	

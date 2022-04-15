@@ -17,32 +17,18 @@ import Integracion.Proveedor.DAOProveedorImp;
 
 public class DAOFactoriaImp extends DAOFactoria {
 
-	public DAOFabricante generarDAOFabricante() {
-		return new DAOFabricanteImp();
-	}
+	public DAOFabricante generarDAOFabricante() { return new DAOFabricanteImp(); }
 
-	public DAOCliente generarDAOCliente() {
-		return new DAOClienteImp();
-	}
+	public DAOCliente generarDAOCliente() { return new DAOClienteImp(); }
 
-	public DAOProducto generarDAOProducto() {
-		return new DAOProductoImp();
-	}
+	public DAOProducto generarDAOProducto() { return new DAOProductoImp(); }
 
-	public DAODescuento generarDAODescuento() {
-		return new DAODescuentoImp();
-	}
+	public DAODescuento generarDAODescuento() { return new DAODescuentoImp(); }
 
-	public DAOFactura generarDAOFactura() {
-		return new DAOFacturaImp();
-	}
+	public DAOFactura generarDAOFactura() { return new DAOFacturaImp(); }
 
-	public DAOProveedor generarDAOProveedor() {
-		return new DAOProveedorImp();
-	}
+	public DAOProveedor generarDAOProveedor() { return new DAOProveedorImp(); }
 
-	public DAOLineaFactura generarDAOLineaFactura() {
-		return new DAOLineaFacturaImp();
-	}
+	public DAOLineaFactura generarDAOLineaFactura() { return new DAOLineaFacturaImp(); }
 	
 }
