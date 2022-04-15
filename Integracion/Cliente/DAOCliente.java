@@ -16,7 +16,7 @@ public interface DAOCliente {
 
 	public TCliente buscarClientePorId(int idCliente);
 
-	public List<TCliente> listarClientesPorTipo(boolean tipo);
+	public List<TCliente> listarClientesPorTipo(boolean isCorriente);
 	
 	public TCliente buscarClientePorDNI(String dni);
 }
