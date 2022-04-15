@@ -5,9 +5,7 @@ public abstract class QueryFactoria {
     private static QueryFactoria instancia;
 	
 	public static QueryFactoria getInstancia(){
-		if(instancia == null){
-			instancia = new QueryFactoriaImp();
-		}
+		if(instancia == null) instancia = new QueryFactoriaImp();
 		return instancia;
 	}
 	
