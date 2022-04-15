@@ -12,8 +12,8 @@ import Integracion.Transaction.TransactionManager;
 import Negocio.Descuento.TDescuento;
 
 public class DAODescuentoImp implements DAODescuento {
-    
-    Connection conexion;
+
+	Connection conexion;
 	PreparedStatement pStatement;
 	ResultSet rs;
 	
@@ -23,16 +23,15 @@ public class DAODescuentoImp implements DAODescuento {
 		
 		try {
 			conexion = (Connection) TransactionManager.getInstancia().getTransaccion().getResource();
-			pStatement = conexion.prepareStatement("INSERT INTO descuento (porcentaje) VALUES (?)", Statement.RETURN_GENERATED_KEYS);
+			pStatement = conexion.prepareStatement("INSERT INTO descuento (porcentaje, activo) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
 			pStatement.setInt(1, tDescuento.getPorcentaje());
-			
+			pStatement.setBoolean(2, true);
 			pStatement.executeUpdate();
 			rs = pStatement.getGeneratedKeys();
 			if (rs.next())
 				idDescuento = rs.getInt(1);
-			rs.close();
 			pStatement.close();
-			
+			rs.close();
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
@@ -49,12 +48,12 @@ public class DAODescuentoImp implements DAODescuento {
 			conexion = (Connection) TransactionManager.getInstancia().getTransaccion().getResource();
 			pStatement = conexion.prepareStatement("UPDATE descuento SET porcentaje = ?, activo = ? WHERE id = ?");
 			pStatement.setInt(1, tDescuento.getPorcentaje());
-			pStatement.setBoolean(2, true);
+			pStatement.setBoolean(2, tDescuento.isActivo());
 			pStatement.setInt(3, tDescuento.getId());
 			pStatement.executeUpdate();
-			pStatement.close();
 			idDescuento = tDescuento.getId();
-			
+			pStatement.close();
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -71,6 +70,7 @@ public class DAODescuentoImp implements DAODescuento {
 			pStatement.setInt(2, idDescuento);
 			pStatement.executeUpdate();
 			pStatement.close();
+			rs.close();
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
@@ -105,12 +105,11 @@ public class DAODescuentoImp implements DAODescuento {
 		
 		try {
 			conexion = (Connection) TransactionManager.getInstancia().getTransaccion().getResource();
-			pStatement = conexion.prepareStatement("SELECT * FROM descuento WHERE activo = ? AND id = ?");
-			pStatement.setBoolean(1, true);
-			pStatement.setInt(2, idDescuento);
+			pStatement = conexion.prepareStatement("SELECT * FROM descuento WHERE id = ? FOR UPDATE");
+			pStatement.setInt(1, idDescuento);
 			rs = pStatement.executeQuery();
 			if (rs.next())
-				tDescuento = new TDescuento(rs.getInt(1), rs.getInt(2));
+				tDescuento = new TDescuento(rs.getInt(1), rs.getInt(2), rs.getBoolean(3));
 			pStatement.close();
 			rs.close();
 		} catch(SQLException e) {
@@ -126,16 +125,18 @@ public class DAODescuentoImp implements DAODescuento {
 		
 		try {
 			conexion = (Connection) TransactionManager.getInstancia().getTransaccion().getResource();
-			pStatement = conexion.prepareStatement("SELECT * FROM descuento WHERE porcentaje = ? AND activo = ?");
+			pStatement = conexion.prepareStatement("SELECT * FROM descuento WHERE porcentaje = ? FOR UPDATE");
 			pStatement.setInt(1, porcentaje);
-			pStatement.setBoolean(2, true);
 			rs = pStatement.executeQuery();
 			if (rs.next())
-				tDescuento = new TDescuento(rs.getInt(1), rs.getInt(2));
+				tDescuento = new TDescuento(rs.getInt(1), rs.getInt(2), rs.getBoolean(3));
+			pStatement.close();
+			rs.close();
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		return tDescuento;
 	}
+	
 }
