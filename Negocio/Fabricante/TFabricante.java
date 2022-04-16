@@ -1,8 +1,7 @@
 package Negocio.Fabricante;
 
 public class TFabricante {
-    
-    private int id;
+	private int id;
 	private String nombre;
 	private String direccion;
 	private boolean activo;
@@ -64,4 +63,5 @@ public class TFabricante {
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
+	
 }

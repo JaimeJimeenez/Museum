@@ -1,16 +1,17 @@
 package Negocio.Fabricante;
 
+import Negocio.Producto.TProducto;
+
 import java.util.List;
 
 import Integracion.DAOFactoria.DAOFactoria;
 import Integracion.Fabricante.DAOFabricante;
-import Integracion.Query.QueryFactoria;
+import Integracion.Producto.DAOProducto;
 import Integracion.Transaction.Transaction;
 import Integracion.Transaction.TransactionManager;
-import Negocio.Producto.TProducto;
 
 public class SAFabricanteImp implements SAFabricante {
-	
+
 	public int registrarFabricante(TFabricante tFabricante) throws Exception {
 		int fabricante = 0;
 
@@ -63,10 +64,11 @@ public class SAFabricanteImp implements SAFabricante {
 		transaction.start();
 
 		DAOFabricante daoFabricante = DAOFactoria.getInstancia().generarDAOFabricante();
+		DAOProducto daoProducto = DAOFactoria.getInstancia().generarDAOProducto();
 		TFabricante fabricanteLeido = daoFabricante.buscarFabricantePorID(IDFabricante);
 
 		if (fabricanteLeido != null && fabricanteLeido.isActivo()) {
-			List<TProducto> listaProductos = (List<TProducto>) QueryFactoria.getInstancia().nuevaQuery("mostrarProductoPorNombreFabricante").execute(fabricanteLeido.getNombre());
+			List<TProducto> listaProductos = daoProducto.leerPorIdFabricante(IDFabricante);
 			if(listaProductos.isEmpty()){
 				fabricante = daoFabricante.borrarFabricante(IDFabricante);
 				transaction.commit();
