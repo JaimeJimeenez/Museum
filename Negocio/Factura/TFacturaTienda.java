@@ -3,8 +3,8 @@ package Negocio.Factura;
 import java.sql.Date;
 
 public class TFacturaTienda {
-    
-    private int id;
+	
+	private int id;
 	private int idCliente;
 	private int idDescuento;
 	private Date fecha;
@@ -14,6 +14,11 @@ public class TFacturaTienda {
 	public TFacturaTienda(){
 		
 	}
+	
+	public TFacturaTienda(Date date){
+		this.fecha=date;
+	}
+	
 	
 	public TFacturaTienda(int id, Date fecha, float precioTotal, boolean activo){
 		if (id < 1) throw new IllegalArgumentException("ID incorrecto.");

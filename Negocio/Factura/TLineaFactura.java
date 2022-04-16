@@ -3,7 +3,8 @@ package Negocio.Factura;
 import Negocio.Producto.TProducto;
 
 public class TLineaFactura {
-    private int idFactura;
+
+	private int idFactura;
 	private TProducto producto;
 	private int cantidad;
 	private double precio;
@@ -16,17 +17,17 @@ public class TLineaFactura {
 	}
 	
 	public TLineaFactura(TProducto producto, int cantidad){
+		this.producto=producto;
+		this.cantidad = cantidad;
+	}
+	
+	public TLineaFactura(int idFactura, TProducto producto, int cantidad){
+		this.idFactura = idFactura;
 		this.producto = producto;
 		this.cantidad = cantidad;
 	}
 	
-	public TLineaFactura(int idFactura, TProducto tProducto,  int cantidad) {
-		this.idFactura = idFactura;
-		this.producto = tProducto;
-		this.cantidad = cantidad;
-	}
-	
-	public int getIdFactura() {
+    public int getIdFactura() {
 		return idFactura;
 	}
 	
@@ -38,6 +39,7 @@ public class TLineaFactura {
 		return producto;
 	}
 	
+
 	public void setProducto(TProducto producto) {
 		this.producto = producto;
 	}

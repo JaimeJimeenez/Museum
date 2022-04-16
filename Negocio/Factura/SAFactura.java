@@ -8,7 +8,7 @@ public interface SAFactura {
 
     public TCarrito abrirFactura();
 
-	public TCarrito añadirProducto(TCarrito carrito);
+	public TCarrito añadirProducto(TCarrito carrito) throws Exception;
 
 	public TCarrito bucarFacturaID(int id) throws Exception;
 

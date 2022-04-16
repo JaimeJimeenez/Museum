@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TCarrito {
-    
-    private TFacturaTienda factura;
+	
+	private TFacturaTienda factura;
 	private List<TLineaFactura> lineaFactura;
 	private int idProducto;
 	private int cantidad;
