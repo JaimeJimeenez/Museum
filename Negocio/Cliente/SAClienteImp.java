@@ -9,22 +9,23 @@ import Integracion.Cliente.DAOCliente;
 
 public class SAClienteImp implements SACliente {
 
-	public int registrarCliente(TCliente tCliente) {
+	public int registrarCliente(TCliente tCliente) throws Exception {
 		int idCliente = 0;
 		
-		Transaction transaction = TransactionManager.getInstancia().getTransaccion();
+		Transaction transaction = TransactionManager.getInstancia().nuevaTransaccion();
 		transaction.start();  
 		
 		DAOCliente daoCliente =  DAOFactoria.getInstancia().generarDAOCliente();
-		TCliente clienteLeido = daoCliente.buscarClientePorDNI(tCliente.getDni()); //mirar si el nombre del metodo esta OK
+		TCliente clienteLeido = daoCliente.buscarClientePorDNI(tCliente.getDni()); 
 		
 		if(clienteLeido == null){
 			idCliente = daoCliente.registrarCliente(tCliente);
 			transaction.commit();
 		}
 		else if(clienteLeido != null && !clienteLeido.isActivo()){
-			clienteLeido.setActivo(true);
-			daoCliente.modificarCliente(clienteLeido);
+			tCliente.setActivo(true);
+			tCliente.setId(clienteLeido.getId());
+			daoCliente.modificarCliente(tCliente);
 			idCliente = clienteLeido.getId();
 			transaction.commit();
 		}
@@ -38,21 +39,23 @@ public class SAClienteImp implements SACliente {
 
 	public int modificarCliente(TCliente tCliente) throws Exception{
 		
-		Transaction transaction = TransactionManager.getInstancia().getTransaccion();
+		int respuesta = 0;
+		
+		Transaction transaction = TransactionManager.getInstancia().nuevaTransaccion();
 		transaction.start(); 
 		
 		DAOCliente daoCliente =  DAOFactoria.getInstancia().generarDAOCliente();
-		TCliente clienteLeido = daoCliente.buscarClientePorDNI(tCliente.getDni()); //mirar si el nombre del metodo esta OK
+		TCliente clienteLeido = daoCliente.buscarClientePorId(tCliente.getId()); 
 		
 		if(clienteLeido != null && clienteLeido.isActivo()){
 			tCliente.setActivo(true);
-			daoCliente.modificarCliente(tCliente);
+			respuesta = daoCliente.modificarCliente(tCliente);
 			transaction.commit();
 		}else{
 			transaction.rollback();
 		}
 		
-		return tCliente.getId();
+		return respuesta;
 	}
 
 	public int borrarCliente(int idCliente) throws Exception{
@@ -60,7 +63,7 @@ public class SAClienteImp implements SACliente {
 		
 		if (idCliente < 1) throw new IllegalArgumentException("ID incorrecto.");
 		
-		Transaction transaction = TransactionManager.getInstancia().getTransaccion();
+		Transaction transaction = TransactionManager.getInstancia().nuevaTransaccion();
 		transaction.start(); 
 		
 		DAOCliente daoCliente =  DAOFactoria.getInstancia().generarDAOCliente();
@@ -79,7 +82,7 @@ public class SAClienteImp implements SACliente {
 	public List<TCliente> mostrarListaClientes() throws Exception{
 		List<TCliente> listaClientes = null;
 		
-		Transaction transaction = TransactionManager.getInstancia().getTransaccion();
+		Transaction transaction = TransactionManager.getInstancia().nuevaTransaccion();
 		transaction.start(); 
 		
 		DAOCliente daoCliente =  DAOFactoria.getInstancia().generarDAOCliente();
@@ -101,7 +104,7 @@ public class SAClienteImp implements SACliente {
 
 		TCliente respuesta = null;
 		
-		Transaction transaction = TransactionManager.getInstancia().getTransaccion();
+		Transaction transaction = TransactionManager.getInstancia().nuevaTransaccion();
 		transaction.start(); 
 		
 		DAOCliente daoCliente =  DAOFactoria.getInstancia().generarDAOCliente();
@@ -118,14 +121,14 @@ public class SAClienteImp implements SACliente {
 		
 	}
 	
-	public List<TCliente> listarClientesPorTipo(boolean tipo) throws Exception{
+	public List<TCliente> listarClientesPorTipo(boolean isCorriente) throws Exception{
 		List<TCliente> listaClientes = null;
 		
-		Transaction transaction = TransactionManager.getInstancia().getTransaccion();
+		Transaction transaction = TransactionManager.getInstancia().nuevaTransaccion();
 		transaction.start(); 
 		
 		DAOCliente daoCliente =  DAOFactoria.getInstancia().generarDAOCliente();
-		listaClientes = daoCliente.listarClientesPorTipo(tipo);
+		listaClientes = daoCliente.listarClientesPorTipo(isCorriente);
 		
 		if(listaClientes != null){
 			transaction.commit();

@@ -18,7 +18,7 @@ public class TCorriente extends TCliente {
 		super(id, direccion);
 		this.gastosEnvio = gastosEnvio;
 	}
-	
+
 	public double getGastosEnvio() { return gastosEnvio; }
 
 	public void setGastosEnvio(double gastosEnvio) { this.gastosEnvio = gastosEnvio; }

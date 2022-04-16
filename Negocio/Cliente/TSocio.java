@@ -22,7 +22,7 @@ public class TSocio extends TCliente {
 		this.numero = numero;
 		this.cuota = cuota;
 	}
-	
+
 	public int getNumero() { return numero; }
 
 	public void setNumero(int numero) { this.numero = numero; }
@@ -36,4 +36,5 @@ public class TSocio extends TCliente {
 
 	@Override
 	public void setGastosEnvio(double gastosEnvio) {	}
+	
 }

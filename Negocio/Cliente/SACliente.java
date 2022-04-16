@@ -14,5 +14,5 @@ public interface SACliente {
 
 	public TCliente buscarClientePorId(int idCliente) throws Exception;
 
-	public List<TCliente> listarClientesPorTipo(boolean tipo) throws Exception;
+	public List<TCliente> listarClientesPorTipo(boolean isCorriente) throws Exception;
 }
