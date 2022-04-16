@@ -18,6 +18,10 @@ public abstract class TProducto {
 		this.activo = activo;
 	}
 	
+	public TProducto(int id) {
+		this.id = id;
+		this.activo = true;
+	}
 	public TProducto(int id,int idFabricante, int stock, double precio, String nombre) {
 		this.id = id;
 		this.idFabricante = idFabricante;
@@ -40,10 +44,7 @@ public abstract class TProducto {
 		this.activo = true;
 	}
 	
-	public TProducto(int id) {
-		this.id = id;
-		this.activo = true;
-	}
+	
 
 	public int getId() { return id;	}
 

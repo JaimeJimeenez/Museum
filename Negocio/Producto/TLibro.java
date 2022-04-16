@@ -33,4 +33,3 @@ public class TLibro extends TProducto {
 	@Override
 	public String getTamanio() { return null; }
 }
-
