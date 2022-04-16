@@ -1,13 +1,12 @@
 package Negocio.Descuento;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import Integracion.DAOFactoria.DAOFactoria;
 import Integracion.Descuento.DAODescuento;
-import Integracion.Producto.DAOProducto;
 import Integracion.Transaction.Transaction;
 import Integracion.Transaction.TransactionManager;
-import Negocio.Producto.TProducto;
 
 public class SADescuentoImp implements SADescuento {
 
@@ -21,12 +20,12 @@ public class SADescuentoImp implements SADescuento {
 		TDescuento leido = daoDescuento.buscarDescuentoPorPorcentaje(tDescuento.getPorcentaje());
 		
 		if (leido == null) {
-			tDescuento.setActivo(true);
 			idDescuento = daoDescuento.añadirDescuento(tDescuento);
 			transaction.commit();
 		} else if (leido != null && !leido.isActivo()) {
-			leido.setActivo(true);
-			daoDescuento.modificarDescuento(leido);
+			tDescuento.setActivo(true);
+			tDescuento.setId(leido.getId());
+			daoDescuento.modificarDescuento(tDescuento);
 			idDescuento = leido.getId();
 			transaction.commit();
 		}

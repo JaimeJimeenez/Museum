@@ -2,7 +2,7 @@ package Negocio.Descuento;
 
 public class TDescuento {
 
-    private int id;
+	private int id;
 	private int porcentaje;
 	private boolean activo;
 	
@@ -35,5 +35,5 @@ public class TDescuento {
 	public boolean isActivo() { return activo; }
 	
 	public void setActivo(boolean activo) { this.activo = activo; }
-    
+	
 }
