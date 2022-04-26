@@ -1,12 +1,12 @@
 package Negocio.Factura;
 
+import java.util.LinkedList;
 import java.util.List;
-
 import Negocio.Producto.TProducto;
 
 public interface SAFactura {
-
-    public TCarrito abrirFactura();
+	
+	public TCarrito abrirFactura();
 
 	public TCarrito añadirProducto(TCarrito carrito) throws Exception;
 
@@ -27,4 +27,6 @@ public interface SAFactura {
 	public List<TProducto> mostrarProductoMasComprado() throws Exception;
 	
 	public List<TFacturaTienda> mostrarFacturaConMayorPorcentajeDescuento() throws Exception;
+	
+	public LinkedList<TFacturaTiendaCompleta> mostrarFacturaCompleta() throws Exception;
 }

@@ -3,6 +3,7 @@ package Negocio.Factura;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -310,5 +311,35 @@ public class SAFacturaImp implements SAFactura {
 		}
 		return factura;
 	}
+
+	@Override
+	public LinkedList<TFacturaTiendaCompleta> mostrarFacturaCompleta() throws Exception {
+		LinkedList<TFacturaTiendaCompleta> listaFacturas = new LinkedList<TFacturaTiendaCompleta>();
+
+		Transaction transaction = TransactionManager.getInstancia().nuevaTransaccion();
+		transaction.start();
+		
+		DAOFactura daoFactura = DAOFactoria.getInstancia().generarDAOFactura();
+		List<TFacturaTienda> factura = daoFactura.mostrarListaFacturas();
+		
+		if (factura != null) {
+			DAOLineaFactura daoLineaFactura = DAOFactoria.getInstancia().generarDAOLineaFactura();
+			for(TFacturaTienda f : factura) {
+				List<TLineaFactura> lineas = daoLineaFactura.mostrarLineasFacturas(f.getId());
+				for(TLineaFactura l : lineas){
+					TFacturaTiendaCompleta facturaCompleta = new TFacturaTiendaCompleta(f.getId(), l.getProducto().getId(), f.getIdCliente());
+					listaFacturas.add(facturaCompleta);
+				}
+			}
+			transaction.commit();
+		} 
+		else {
+			transaction.rollback();
+		}	
+
+		return listaFacturas;
+	}
+	
+	
 
 }
