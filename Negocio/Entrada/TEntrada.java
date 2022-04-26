@@ -1,6 +1,9 @@
 package Negocio.Entrada;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+
 
 public class TEntrada {
 
@@ -11,6 +14,7 @@ public class TEntrada {
 	private Integer numeroEntradas;
 	private String obra;
 	private Integer sala;
+	private Collection<Integer> facturas;
 	
 	public TEntrada() { }
 
@@ -23,8 +27,8 @@ public class TEntrada {
 		this.numeroEntradas = numeroEntradas;
 		this.obra = obra;
 		this.sala = sala;
+		this.facturas = new ArrayList<>();
 	}
-
 
 	public Integer getId() { return id; }
 
@@ -53,5 +57,9 @@ public class TEntrada {
 	public Integer getSala() { return sala; }
 
 	public void setSala(Integer sala) { this.sala = sala; }
+	
+	public Collection<Integer> getFactura() { return facturas; }
+	
+	public void setFactura(Collection<Integer> facturas) { this.facturas = facturas; }
 	
 }

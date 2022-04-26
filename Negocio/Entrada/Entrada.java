@@ -1,10 +1,11 @@
 package Negocio.Entrada;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
-import java.util.List;
 
 import jakarta.persistence.*;
-import Negocio.FacturaMuseo.LineaFactura;
+import negocio.facturaMuseo.LineaFactura;
 
 @Entity
 @Table(name = "entity_entrada")
@@ -36,9 +37,8 @@ public class Entrada {
 	@Column(name = "fecha")
 	private Date fecha;
 	
-	@OneToMany
-	@Column(name = "factura")
-	private Integer factura;
+	@OneToMany(mappedBy = "entrada")
+	private Collection<LineaFactura> lineas;
 
 	@Column(name = "activo", columnDefinition = "boolean default true")
 	private boolean activo;
@@ -57,6 +57,7 @@ public class Entrada {
 		this.numeroEntradas = numeroEntradas;
 		this.obra = obra;
 		this.sala = sala;
+		this.lineas = new ArrayList<>();
 	}
 
 	public Integer getId() { return id; }
@@ -86,5 +87,9 @@ public class Entrada {
 	public Integer getSala() { return sala; }
 
 	public void setSala(Integer sala) { this.sala = sala; }
+	
+	public Collection<LineaFactura> getLineas() { return lineas; }
+	
+	public void addLinea(LineaFactura linea) { lineas.add(linea); }
 	
 }

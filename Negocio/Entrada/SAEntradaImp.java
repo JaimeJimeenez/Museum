@@ -2,6 +2,7 @@ package Negocio.Entrada;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -10,7 +11,8 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.TypedQuery;
-import Negocio.EntityManagerFactory.EntityManagerFact;
+import negocio.entityManagerFactory.EntityManagerFact;
+import negocio.facturaMuseo.LineaFactura;
 
 public class SAEntradaImp implements SAEntrada {
 
@@ -77,16 +79,18 @@ public class SAEntradaImp implements SAEntrada {
 		
 		em.getTransaction().begin();
 		
-		Entrada entradaLectura = em.find(Entrada.class, tEntrada.getId());
-		if (entradaLectura != null && entradaLectura.isActivo()) {
-			entradaLectura.setFecha(tEntrada.getFecha());
-			entradaLectura.setNumeroEntradas(tEntrada.getNumeroEntradas());
-			entradaLectura.setObra(tEntrada.getObra());
-			entradaLectura.setPrecio(tEntrada.getPrecio());
-			entradaLectura.setSala(tEntrada.getSala());
-			em.persist(entradaLectura);
+		Entrada entrada = em.find(Entrada.class, tEntrada.getId());
+		if (entrada != null && entrada.isActivo() && entrada.getLineas().isEmpty()) {
+			
+			entrada.setFecha(tEntrada.getFecha());
+			entrada.setNumeroEntradas(tEntrada.getNumeroEntradas());
+			entrada.setObra(tEntrada.getObra());
+			entrada.setPrecio(tEntrada.getPrecio());
+			entrada.setSala(tEntrada.getSala());
+			
+			em.persist(entrada);
 			em.getTransaction().commit();
-			id = entradaLectura.getId();
+			id = entrada.getId();
 		}
 		else em.getTransaction().rollback();
 		em.close();
@@ -108,16 +112,25 @@ public class SAEntradaImp implements SAEntrada {
 		if (listaEntidad != null) {
 			for (Entrada e : listaEntidad)
 				if (e.isActivo()) {
-					TEntrada entrada = new TEntrada();
-					entrada.setId(e.getId());
-					entrada.setActivo(true);
-					entrada.setFecha(e.getFecha());
-					entrada.setNumeroEntradas(e.getNumeroEntradas());
-					entrada.setObra(e.getObra());
-					entrada.setPrecio(e.getPrecio());
-					entrada.setSala(e.getSala());
-					listaTransfer.add(entrada);
+					TEntrada tEntrada = new TEntrada();
+					
+					tEntrada.setId(e.getId());
+					tEntrada.setActivo(true);
+					tEntrada.setFecha(e.getFecha());
+					tEntrada.setNumeroEntradas(e.getNumeroEntradas());
+					tEntrada.setObra(e.getObra());
+					tEntrada.setPrecio(e.getPrecio());
+					tEntrada.setSala(e.getSala());
+					
+					Collection<Integer> facturas = new ArrayList<>();
+					Collection<LineaFactura> lineas = e.getLineas();
+					for (LineaFactura linea : lineas) 
+						facturas.add(linea.getFactura().getId());
+					tEntrada.setFactura(facturas);
+					
+					listaTransfer.add(tEntrada);
 				}
+			
 			em.getTransaction().commit();
 		}
 		else em.getTransaction().rollback();
@@ -138,6 +151,7 @@ public class SAEntradaImp implements SAEntrada {
 		
 		if (entrada != null && entrada.isActivo()) {
 			tEntrada = new TEntrada();
+			
 			tEntrada.setId(entrada.getId());
 			tEntrada.setFecha(entrada.getFecha());
 			tEntrada.setNumeroEntradas(entrada.getNumeroEntradas());
@@ -145,6 +159,13 @@ public class SAEntradaImp implements SAEntrada {
 			tEntrada.setObra(entrada.getObra());
 			tEntrada.setPrecio(entrada.getPrecio());
 			tEntrada.setSala(entrada.getSala());
+			
+			Collection<Integer> facturas = new ArrayList<>();
+			Collection<LineaFactura> lineas = entrada.getLineas();
+			for (LineaFactura linea : lineas) 
+				facturas.add(linea.getFactura().getId());
+			
+			tEntrada.setFactura(facturas);
 		}
 		
 		return tEntrada;
