@@ -1,4 +1,4 @@
-package Presentacion.VistaPrincipal;
+package Presentacion.vistaPrincipal;
 
 import javax.swing.JPanel;
 

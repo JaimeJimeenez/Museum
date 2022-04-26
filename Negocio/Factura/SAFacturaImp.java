@@ -72,17 +72,6 @@ public class SAFacturaImp implements SAFactura {
 			transaction.rollback();
 			throw new IllegalArgumentException("El producto " + id + " no existe");
 		}
-		
-		/*TProducto producto = daoProducto.buscarProductoPorId(id);
-		if(producto != null){
-			
-			if(lineaFactura != null){
-				lineaFactura.setCantidad(lineaFactura.getCantidad() + cantidad);
-			}
-			else{
-				lineasFactura.add(new TLineaFactura(producto, cantidad));
-			}		
-		}*/
 		return carrito;
 	}
 

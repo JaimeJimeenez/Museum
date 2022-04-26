@@ -1,4 +1,4 @@
-package Presentacion.VistaPrincipal;
+package Presentacion.vistaPrincipal;
 
 public abstract class PrincipalGUI implements GUI {
 	
