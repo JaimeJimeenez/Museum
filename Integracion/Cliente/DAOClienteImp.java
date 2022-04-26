@@ -226,5 +226,4 @@ public class DAOClienteImp implements DAOCliente {
 		
 		return tCliente;
 	}
-
 }

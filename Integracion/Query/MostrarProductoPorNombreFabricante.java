@@ -43,5 +43,4 @@ public class MostrarProductoPorNombreFabricante implements Query{
 		}
 		return listaProductos;
 	}
-
 }

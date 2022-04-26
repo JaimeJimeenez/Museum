@@ -24,9 +24,10 @@ public class MostrarProductoMasComprado implements Query{
 		try {
 			conexion = (Connection) TransactionManager.getInstancia().getTransaccion().getResource();
 			// MIRAR LA CONSULTA
-			pStatement = conexion.prepareStatement("SELECT p.*, SUM(fp.cantidad) AS cantidad "
-					+ "FROM producto p LEFT JOIN factura_producto fp ON (p.id = fp.id_producto) "
-					+ "WHERE p.activo = true GROUP BY p.id ORDER BY cantidad DESC");
+			pStatement = conexion.prepareStatement("SELECT p.*, SUM(fp.cantidad) AS cantidad , pf.tamanio, pf.estilo, pl.categoria FROM producto p LEFT JOIN factura_producto fp ON (p.id = fp.id_producto)" 
+					+ " LEFT JOIN producto_fotoobra pf on (pf.id = p.id)"
+					+ " LEFT JOIN producto_libro pl on (pl.id = p.id)" 
+					+ " WHERE p.activo = true GROUP BY p.id ORDER BY cantidad DESC");
 			rs = pStatement.executeQuery();
 			int cantidad = 0;
 			boolean stop = false;

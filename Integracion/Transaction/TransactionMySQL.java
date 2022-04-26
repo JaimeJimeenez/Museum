@@ -8,9 +8,9 @@ public class TransactionMySQL implements Transaction {
 	
 	private Connection connection;
 	
-	private final String username = "museoms";
+	private final String username = "museo";
 	private final String password = "password";
-	private final String url = "jdbc:mysql://haidoni-dev.dns.army:3306";
+	private final String url = "jdbc:mysql://localhost:3306/museo";
 
 	public void start() {
 		try {

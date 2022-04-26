@@ -226,5 +226,4 @@ public class DAOProductoImp implements DAOProducto {
 		}
 		return producto;
 	}
-
 }

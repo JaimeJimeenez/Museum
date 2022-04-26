@@ -12,7 +12,6 @@ import Integracion.Transaction.TransactionManager;
 import Negocio.Descuento.TDescuento;
 
 public class DAODescuentoImp implements DAODescuento {
-
 	Connection conexion;
 	PreparedStatement pStatement;
 	ResultSet rs;
