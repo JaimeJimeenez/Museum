@@ -1,8 +1,8 @@
 package Presentacion.Controller;
 
+import Presentacion.Controller.Comandos.CommandFactory.Command;
 import Presentacion.Controller.Dispatcher.Dispatcher;
-import Presentacion.Controller.comandos.commandFactory.Command;
-import Presentacion.Controller.comandos.commandFactory.CommandFactory;
+import Presentacion.Controller.Comandos.CommandFactory.*;
 
 public class ApplicationControllerImp extends ApplicationController {
 

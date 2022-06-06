@@ -1,13 +1,13 @@
-package Presentacion.Controller.Comandos.Tienda.descuento;
+package Presentacion.Controller.Comandos.Tienda.Descuento;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import Presentacion.Controller.Context;
 import Presentacion.Controller.Eventos;
-import Presentacion.Controller.comandos.commandFactory.Command;
-import negocio.descuento.TDescuento;
-import negocio.SAFactoria.SAFactoria;
+import Presentacion.Controller.Comandos.CommandFactory.*;
+import Negocio.SAFactoria.SAFactoria;
+import Negocio.Descuento.TDescuento;
 
 public class MostrarListaDescuentoCommand implements Command {
 

@@ -1,4 +1,4 @@
-package Presentacion.Controller.Comandos.Tienda.factura;
+package Presentacion.Controller.Comandos.Tienda.Factura;
 
 import Presentacion.Controller.Context;
 import Presentacion.Controller.Eventos;

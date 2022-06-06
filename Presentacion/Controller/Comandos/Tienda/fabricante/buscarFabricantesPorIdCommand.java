@@ -1,4 +1,4 @@
-package Presentacion.Controller.Comandos.Tienda.fabricante;
+package Presentacion.Controller.Comandos.Tienda.Fabricante;
 
 import Presentacion.Controller.Context;
 import Presentacion.Controller.Eventos;

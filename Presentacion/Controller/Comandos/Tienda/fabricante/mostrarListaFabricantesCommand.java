@@ -1,4 +1,4 @@
-package Presentacion.Controller.Comandos.Tienda.fabricante;
+package Presentacion.Controller.Comandos.Tienda.Fabricante;
 
 import java.util.List;
 

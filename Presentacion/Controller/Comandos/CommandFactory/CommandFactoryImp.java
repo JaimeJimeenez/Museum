@@ -26,7 +26,7 @@ public class CommandFactoryImp extends CommandFactory {
 		break;
 		case MODIFICAR_FABRICANTE: command = new modificarFabricanteCommand();
 		break;
-		case BORRAR_FABRICANTE: command = new borrarFabricanteCommand();
+		case BORRAR_FABRICANTE: command = new BorrarFabricanteCommand();
 		break;
 		case MOSTRAR_LISTA_FABRICANTES: command = new mostrarListaFabricantesCommand();
 		break;

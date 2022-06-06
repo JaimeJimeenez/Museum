@@ -1,4 +1,4 @@
-package Presentacion.Controller.Comandos.Tienda.factura;
+package Presentacion.Controller.Comandos.Tienda.Factura;
 
 import java.util.List;
 

@@ -1,10 +1,10 @@
-package Presentacion.Controller.Comandos.Tienda.descuento;
+package Presentacion.Controller.Comandos.Tienda.Descuento;
 
 import Presentacion.Controller.Context;
 import Presentacion.Controller.Eventos;
-import Presentacion.Controller.comandos.commandFactory.Command;
-import negocio.SAFactoria.SAFactoria;
-import negocio.descuento.TDescuento;
+import Presentacion.Controller.Comandos.CommandFactory.*;
+import Negocio.SAFactoria.SAFactoria;
+import Negocio.Descuento.TDescuento;
 
 public class ModificarDescuentoCommand implements Command {
 
