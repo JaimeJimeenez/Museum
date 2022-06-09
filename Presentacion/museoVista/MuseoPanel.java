@@ -40,9 +40,9 @@ import Presentacion.utility.RoundButton;
 import Presentacion.utility.TablePanel;
 import Presentacion.vistaPrincipal.GUI;
 import Presentacion.vistaPrincipal.PrincipalGUI;
-import negocio.cliente.TCliente;
-import negocio.cliente.TCorriente;
-import negocio.cliente.TSocio;
+import Negocio.Cliente.TCliente;
+import Negocio.Cliente.TCorriente;
+import Negocio.Cliente.TSocio;
 
 public class MuseoPanel extends JPanel implements GUI {
 

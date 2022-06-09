@@ -3,7 +3,15 @@ package Presentacion.Controller.Comandos.CommandFactory;
 import Presentacion.Controller.Eventos;
 import Presentacion.Controller.Comandos.Museo.*;
 import Presentacion.Controller.Comandos.Museo.Empleado.*;
+import Presentacion.Controller.Comandos.Museo.Entrada.*;
+import Presentacion.Controller.Comandos.Museo.FacturaMuseo.*;
+import Presentacion.Controller.Comandos.Museo.TurnoEmpleado.*;
 import Presentacion.Controller.Comandos.Tienda.*;
+import Presentacion.Controller.Comandos.Tienda.Cliente.*;
+import Presentacion.Controller.Comandos.Tienda.Descuento.*;
+import Presentacion.Controller.Comandos.Tienda.Fabricante.*;
+import Presentacion.Controller.Comandos.Tienda.Factura.*;
+import Presentacion.Controller.Comandos.Tienda.Producto.*;
 
 
 public class CommandFactoryImp extends CommandFactory {
@@ -22,15 +30,15 @@ public class CommandFactoryImp extends CommandFactory {
 		break;
 		
 		// FABRICANTE
-		case REGISTRAR_FABRICANTE: command = new registrarFabricanteCommand();
+		case REGISTRAR_FABRICANTE: command = new RegistrarFabricanteCommand();
 		break;
-		case MODIFICAR_FABRICANTE: command = new modificarFabricanteCommand();
+		case MODIFICAR_FABRICANTE: command = new ModificarFabricanteCommand();
 		break;
 		case BORRAR_FABRICANTE: command = new BorrarFabricanteCommand();
 		break;
-		case MOSTRAR_LISTA_FABRICANTES: command = new mostrarListaFabricantesCommand();
+		case MOSTRAR_LISTA_FABRICANTES: command = new MostrarListaFabricantesCommand();
 		break;
-		case BUSCAR_FABRICANTE_POR_ID: command = new buscarFabricantesPorIdCommand();
+		case BUSCAR_FABRICANTE_POR_ID: command = new BuscarFabricantesPorIdCommand();
 		break;
 		
 		// CLIENTE

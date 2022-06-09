@@ -11,12 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import negocio.factura.TCarrito;
-import negocio.factura.TFacturaTienda;
-import negocio.factura.TLineaFactura;
-import negocio.facturaMuseo.TCarritoMuseo;
-import negocio.facturaMuseo.TFacturaMuseo;
-import negocio.facturaMuseo.TLineaFacturaMuseo;
+import Negocio.Factura.TCarrito;
+import Negocio.Factura.TFacturaTienda;
+import Negocio.Factura.TLineaFactura;
+import Negocio.FacturaMuseo.TCarritoMuseo;
+import Negocio.FacturaMuseo.TFacturaMuseo;
+import Negocio.FacturaMuseo.TLineaFacturaMuseo;
 
 @SuppressWarnings("serial")
 public class FacturaTable extends JPanel {

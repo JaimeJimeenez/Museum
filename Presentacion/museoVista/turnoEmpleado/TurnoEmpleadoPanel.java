@@ -27,10 +27,10 @@ import Presentacion.utility.PanelGridBagConstraint;
 import Presentacion.utility.RoundButton;
 import Presentacion.utility.TablePanel;
 import Presentacion.vistaPrincipal.GUI;
-import negocio.cliente.TCliente;
-import negocio.cliente.TCorriente;
-import negocio.cliente.TSocio;
-import negocio.turnoEmpleado.TTurnoEmpleado;
+import Negocio.Cliente.TCliente;
+import Negocio.Cliente.TCorriente;
+import Negocio.Cliente.TSocio;
+import Negocio.TurnoEmpleado.TTurnoEmpleado;
 
 public class TurnoEmpleadoPanel extends JPanel implements GUI {
 

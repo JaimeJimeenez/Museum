@@ -7,8 +7,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +14,6 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import Presentacion.Controller.ApplicationController;
@@ -31,9 +28,7 @@ import Presentacion.utility.RoundButton;
 import Presentacion.utility.TablePanel;
 import Presentacion.utility.Utils;
 import Presentacion.vistaPrincipal.GUI;
-import negocio.entrada.TEntrada;
-import negocio.facturaMuseo.LineaFactura;
-import negocio.turnoEmpleado.TTurnoEmpleado;
+import Negocio.Entrada.TEntrada;
 
 public class EntradaPanel extends JPanel implements GUI {
 	

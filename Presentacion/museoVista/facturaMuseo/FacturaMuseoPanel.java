@@ -34,10 +34,10 @@ import Presentacion.utility.PanelGridBagConstraint;
 import Presentacion.utility.RoundButton;
 import Presentacion.utility.TablePanel;
 import Presentacion.vistaPrincipal.GUI;
-import negocio.facturaMuseo.TCarritoMuseo;
-import negocio.facturaMuseo.TFacturaCompleta;
-import negocio.facturaMuseo.TFacturaMuseo;
-import negocio.facturaMuseo.TLineaFacturaMuseo;
+import Negocio.FacturaMuseo.TCarritoMuseo;
+import Negocio.FacturaMuseo.TFacturaCompleta;
+import Negocio.FacturaMuseo.TFacturaMuseo;
+import Negocio.FacturaMuseo.TLineaFacturaMuseo;
 
 @SuppressWarnings("serial")
 public class FacturaMuseoPanel extends JPanel implements GUI {
