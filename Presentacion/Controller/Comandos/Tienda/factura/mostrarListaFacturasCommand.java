@@ -8,7 +8,6 @@ import Presentacion.Controller.Eventos;
 import Presentacion.Controller.Comandos.CommandFactory.Command;
 import Negocio.SAFactoria.SAFactoria;
 import Negocio.Factura.TCarrito;
-import Negocio.Factura.TFacturaTienda;
 
 public class mostrarListaFacturasCommand implements Command{
 

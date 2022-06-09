@@ -6,7 +6,6 @@ import Presentacion.Controller.Context;
 import Presentacion.Controller.Eventos;
 import Presentacion.Controller.Comandos.CommandFactory.Command;
 import Negocio.SAFactoria.SAFactoria;
-import Negocio.Descuento.TDescuento;
 import Negocio.Factura.TFacturaTienda;
 
 public class mostrarFacturaConMayorPorcentajeDescuentoCommand implements Command{

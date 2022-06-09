@@ -6,7 +6,6 @@ import Presentacion.Controller.Context;
 import Presentacion.Controller.Eventos;
 import Presentacion.Controller.Comandos.CommandFactory.Command;
 import Negocio.SAFactoria.SAFactoria;
-import Negocio.Cliente.TCliente;
 import Negocio.Factura.TFacturaTienda;
 
 public class leerIDdeClienteCommand implements Command{
