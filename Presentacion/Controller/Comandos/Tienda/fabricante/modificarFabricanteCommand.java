@@ -2,11 +2,11 @@ package Presentacion.Controller.Comandos.Tienda.Fabricante;
 
 import Presentacion.Controller.Context;
 import Presentacion.Controller.Eventos;
-import Presentacion.Controller.comandos.commandFactory.Command;
-import negocio.SAFactoria.SAFactoria;
-import negocio.fabricante.TFabricante;
+import Presentacion.Controller.Comandos.CommandFactory.Command;
+import Negocio.SAFactoria.SAFactoria;
+import Negocio.Fabricante.TFabricante;
 
-public class modificarFabricanteCommand implements Command {
+public class ModificarFabricanteCommand implements Command {
 
 	public Context execute(Object data) {
 		Context context;
