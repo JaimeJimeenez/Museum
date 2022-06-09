@@ -2,9 +2,9 @@ package Presentacion.Controller.Comandos.Tienda.Factura;
 
 import Presentacion.Controller.Context;
 import Presentacion.Controller.Eventos;
-import Presentacion.Controller.comandos.commandFactory.Command;
-import negocio.SAFactoria.SAFactoria;
-import negocio.factura.TCarrito;
+import Presentacion.Controller.Comandos.CommandFactory.Command;
+import Negocio.SAFactoria.SAFactoria;
+import Negocio.Factura.TCarrito;
 
 public class añadirProductoCommand implements Command{
 

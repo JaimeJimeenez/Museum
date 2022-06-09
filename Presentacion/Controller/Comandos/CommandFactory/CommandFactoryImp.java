@@ -76,7 +76,7 @@ public class CommandFactoryImp extends CommandFactory {
 		break;
 		
 		// FACTURA
-		case ABRIR_FACTURA: command = new abrirFacturaCommand();
+		case ABRIR_FACTURA: command = new AbrirFacturaCommand();
 		break;
 		case AÑADIR_PRODUCTO: command = new añadirProductoCommand();
 		break;
