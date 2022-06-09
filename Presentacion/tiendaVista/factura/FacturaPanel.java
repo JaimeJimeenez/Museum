@@ -34,13 +34,13 @@ import Presentacion.utility.PanelGridBagConstraint;
 import Presentacion.utility.RoundButton;
 import Presentacion.utility.TablePanel;
 import Presentacion.vistaPrincipal.GUI;
-import negocio.factura.TCarrito;
-import negocio.factura.TFacturaTienda;
-import negocio.factura.TFacturaTiendaCompleta;
-import negocio.factura.TLineaFactura;
-import negocio.producto.TFotoObra;
-import negocio.producto.TLibro;
-import negocio.producto.TProducto;
+import Negocio.Factura.TCarrito;
+import Negocio.Factura.TFacturaTienda;
+import Negocio.Factura.TFacturaTiendaCompleta;
+import Negocio.Factura.TLineaFactura;
+import Negocio.Producto.TFotoObra;
+import Negocio.Producto.TLibro;
+import Negocio.Producto.TProducto;
 
 public class FacturaPanel extends JPanel implements GUI{
 

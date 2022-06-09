@@ -29,9 +29,9 @@ import Presentacion.utility.PanelGridBagConstraint;
 import Presentacion.utility.RoundButton;
 import Presentacion.utility.TablePanel;
 import Presentacion.vistaPrincipal.GUI;
-import negocio.producto.TProducto;
-import negocio.producto.TFotoObra;
-import negocio.producto.TLibro;
+import Negocio.Producto.TProducto;
+import Negocio.Producto.TFotoObra;
+import Negocio.Producto.TLibro;
 
 @SuppressWarnings("serial")
 public class ProductoPanel extends JPanel implements GUI  {

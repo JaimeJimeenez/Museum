@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import jakarta.persistence.*;
-import negocio.facturaMuseo.LineaFactura;
+import Negocio.FacturaMuseo.LineaFactura;
 
 @Entity
 @Table(name = "entity_entrada")

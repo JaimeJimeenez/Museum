@@ -27,7 +27,7 @@ import Presentacion.utility.PanelGridBagConstraint;
 import Presentacion.utility.RoundButton;
 import Presentacion.utility.TablePanel;
 import Presentacion.vistaPrincipal.GUI;
-import negocio.fabricante.TFabricante;
+import Negocio.Fabricante.TFabricante;
 
 public class FabricantePanel extends JPanel implements GUI {
 	

@@ -24,9 +24,9 @@ import Presentacion.Controller.Context;
 import Presentacion.Controller.Eventos;
 import Presentacion.utility.*;
 import Presentacion.vistaPrincipal.GUI;
-import negocio.cliente.TCliente;
-import negocio.cliente.TCorriente;
-import negocio.cliente.TSocio;
+import Negocio.Cliente.TCliente;
+import Negocio.Cliente.TCorriente;
+import Negocio.Cliente.TSocio;
 
 @SuppressWarnings("serial")
 public class ClientePanel extends JPanel implements GUI {
